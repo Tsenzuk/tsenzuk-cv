@@ -24,7 +24,7 @@
             flex-direction: column;
             align-content: center;
             justify-content: flex-start;
-            align-items: stretch;
+            align-items: center;
             font-family: sans-serif;
             padding: 0;
             margin: 0;
@@ -35,6 +35,7 @@
         }
 
         header {
+            width: 100vw;
             flex: 0 1 100px;
             display: flex;
             flex-wrap: nowrap;
@@ -156,9 +157,14 @@
             object-fit: contain;
             padding: min(10vh, 10vw);
         }
-        @media (max-width: 1024px) {
+        @media (max-width: 960px) {
             .main {
                 flex-direction: column !important;
+            }
+        }
+        @media (min-width: 1280px) {
+            .main {
+                width: 1280px;
             }
         }
     </style>
