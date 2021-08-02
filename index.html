@@ -77,33 +77,38 @@
         }
 
         .main {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-            padding: 8px;
+            display: grid;
+            align-items: start;
+            grid-template-areas:
+                'summary work work work'
+                'primary work work work'
+                'secondary work work work'
+                'languages work work work'
+                'mentoring work work work'
+                'education work work work';
+            padding: 16px;
         }
 
-        aside {
-            flex: 0 1 30%;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            align-content: center;
-            justify-content: flex-start;
-            align-items: stretch;
-            padding-left: 8px;
-            padding-right: 8px;
-            text-align: justify;
+        .summary {
+            grid-area: summary;
         }
-
-        .experience {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            align-content: center;
-            align-items: stretch;
-            justify-content: flex-start;
+        .primary-skills {
+            grid-area: primary;
+        }
+        .secondary-skills {
+            grid-area: secondary;
+        }
+        .languages {
+            grid-area: languages;
+        }
+        .mentoring {
+            grid-area: mentoring;
+        }
+        .education {
+            grid-area: education;
+        }
+        .work {
+            grid-area: work;
         }
 
         .stage {
@@ -184,7 +189,20 @@
             padding: min(10vh, 10vw);
         }
 
-        @media (max-width: 480px) {
+        @media screen and (max-width: 960px) {
+            .main {
+                grid-template-areas:
+                'summary summary summary'
+                'primary secondary secondary'
+                'languages secondary secondary'
+                'work work work'
+                'mentoring mentoring education'
+                ;
+                grid-auto-columns: min-content auto auto;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
             header {
                 flex-wrap: wrap;
             }
@@ -197,17 +215,36 @@
                 order: 3;
                 flex: 1 1 100%;
             }
-        }
 
-        @media (max-width: 960px) {
             .main {
-                flex-direction: column;
+                grid-template-areas:
+                    'summary'
+                    'primary'
+                    'secondary'
+                    'work'
+                    'mentoring'
+                    'education'
+                    'languages'
+                    ;
+                grid-template-columns: 100%;
             }
         }
 
-        @media (min-width: 1280px) {
+        @media screen and (min-width: 1280px) {
             .main {
                 width: 1280px;
+            }
+        }
+
+        @media print {
+            .main {
+                grid-template-areas:
+                    'summary summary'
+                    'primary mentoring'
+                    'secondary mentoring'
+                    'languages education'
+                    'work work'
+                    ;
             }
         }
     </style>
@@ -234,7 +271,6 @@
         </label>
     </header>
     <section class="main">
-        <aside>
             <article class="summary">
                 <h2>Summary</h2>
                 <p>
@@ -283,8 +319,6 @@
                     <li>English</li>
                 </ul>
             </article>
-        </aside>
-        <section class="experience">
             <article class="work">
                 <h2>Work experience</h2>
                 <div class="stage">
@@ -475,6 +509,7 @@
                     </ul>
                 </div>
             </article>
+            
             <article class="mentoring">
                 <h2>Mentoring experience</h2>
                 <div class="stage">
@@ -542,7 +577,6 @@
                     </dl>
                 </div>
             </article>
-        </section>
     </section>
     <footer>
 
